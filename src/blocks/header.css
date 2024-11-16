@@ -1,22 +1,47 @@
 @font-face {
-	src: url("../assets/yellowtail-regular.woff") format("woff");
-	font-family: "Yellowtail";
+  src: url("../assets/yellowtail-regular.woff") format("woff");
+  font-family: "Yellowtail";
 }
 
 .header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: solid 2px red;
+  height: 40px;
 }
 
 .header__logo {
-	width: 64px;
-	height: 42px;
+  width: 89px;
+  height: 40px;
 }
 
-.header__title {
-	font-family: "Yellowtail";
-	font-size: 40px;
-	margin-left: 12px;
+.header__left {
+  display: flex;
+  align-items: center;
+}
+
+.header__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__right:first-child {
+  gap: 20px;
+}
+
+.header__name {
+  font-family: "Yellowtail";
+  font-size: 20px;
+}
+
+.header__button {
+  margin: auto;
+  height: 24px;
+  color: black;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
 }

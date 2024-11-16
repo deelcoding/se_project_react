@@ -9,14 +9,23 @@ const currentDate = new Date().toLocaleString("default", {
 function Header() {
   return (
     <div className="header">
-      <img
-        src={headerLogo}
-        alt="App Logo"
-        className="header__logo"
-      />
-      (Date(currentDate))
-      <button className="header__button"> + Add Clothes</button>
-
+      <span className="header__left">
+        <img
+          src={headerLogo}
+          alt="App Logo"
+          className="header__logo"
+        />
+        (Date(currentDate))
+      </span>
+      <span className="header__right">
+        <button className="header__button">+ Add Clothes</button>
+        <p className="header__name">Terrence Tegegne</p>
+        <img
+          src="#"
+          alt="Avatar"
+          className="header__avatar"
+        />
+      </span>
     </div>
   );
 }
