@@ -5,43 +5,55 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 32px 0 28px;
   border: solid 2px red;
-  height: 40px;
 }
 
 .header__logo {
-  width: 89px;
-  height: 40px;
+  margin-right: 24px;
 }
 
-.header__left {
-  display: flex;
-  align-items: center;
+.header__date-and-location {
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
 }
 
-.header__right {
+.header__user-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 12px;
 }
 
-.header__right:first-child {
-  gap: 20px;
-}
-
-.header__name {
-  font-family: "Yellowtail";
+.header__username {
+  font-family: "Cabinet Grotesk";
   font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
 }
 
 .header__button {
-  margin: auto;
-  height: 24px;
-  color: black;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  /* width: 116px;
+  height: 24px; */
+  margin: 0 20px 0 auto;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.header__button-text {
+  display: inline;
+  font-family: "Cabinet Grotesk";
   font-size: 20px;
-  line-height: 24px;
+  line-height: 1.2;
   font-weight: 700;
+  padding: 0;
+  color: black;
 }

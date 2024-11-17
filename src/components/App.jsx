@@ -12,13 +12,15 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <Header />
-      {/* <Main /> */}
-      {/* <Footer /> */}
-      {/* <ModalWithForm /> */}
-      {/* <ItemModal /> */}
-    </>
+    <div className="page">
+      <div className="page__content">
+        <Header />
+        {/* <Main /> */}
+        {/* <Footer /> */}
+        {/* <ModalWithForm /> */}
+        {/* <ItemModal /> */}
+      </div>
+    </div>
   );
 }
 
