@@ -1,6 +1,6 @@
-import headerLogo from "../images/headerLogo.png";
-import userAvatar from "../images/user_avatar.png";
-import "../blocks/header.css";
+import headerLogo from "../../images/headerLogo.png";
+import userAvatar from "../../images/user_avatar.png";
+import "./Header.css";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
