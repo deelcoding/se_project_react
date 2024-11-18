@@ -9,7 +9,7 @@ import Main from "../Main/Main.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [weatherData, setWeatherData] = useState({ type: "" });
+  const [weatherData, setWeatherData] = useState({ type: "cold" });
 
   return (
     <div className="page">

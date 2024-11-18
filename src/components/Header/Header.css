@@ -10,7 +10,7 @@
 
 .header__date-and-location {
   margin: 0;
-  font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk Bold", sans-serif;
   font-size: 20px;
   font-weight: 700;
 }
@@ -24,7 +24,7 @@
 
 .header__username {
   margin: 0;
-  font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk Bold", sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 1.2;
@@ -34,8 +34,6 @@
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  /* width: 116px;
-  height: 24px; */
   margin: 0 20px 0 auto;
   padding: 0;
   border: none;
@@ -44,7 +42,7 @@
 
 .header__button-text {
   display: inline;
-  font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk Bold", sans-serif;
   font-size: 20px;
   line-height: 1.2;
   font-weight: 700;

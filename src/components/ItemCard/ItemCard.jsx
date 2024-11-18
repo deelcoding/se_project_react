@@ -1,13 +1,15 @@
+import "./ItemCard.css";
+
 function ItemCard({item}) {
   return (
-    <div>
-      <h2>{item.name}</h2>
+    <li className="card">
+      <h2 className="card__name">{item.name}</h2>
       <img
         src={item.link}
         alt={item.name}
-        className="cards__list-image"
+        className="card__image"
       />
-    </div>
+    </li>
   );
 }
 
