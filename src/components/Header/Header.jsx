@@ -6,7 +6,7 @@ const currentDate = new Date().toLocaleString("default", {
   month: "long",
   day: "numeric",
 });
-function Header() {
+function Header({onAddGarment}) {
   return (
     <header className="header">
       <img
@@ -17,7 +17,7 @@ function Header() {
       <p className="header__date-and-location">
         {currentDate}, Current Location will be here
       </p>
-      <button className="header__button">
+      <button onClick={onAddGarment} type="button" className="header__button">
         <span className="header__button-text">+ Add clothes</span>
       </button>
       <div className="header__user-container">
