@@ -8,18 +8,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* visibility: hidden; */
-  display: none;
+  visibility: hidden;
   opacity: 0;
   transition: visibility 0.5s linear, opacity 0.5s ease-in-out;
   pointer-events: none;
 }
 
 .modal_opened {
-  /* visibility: visible;
+  visibility: visible;
   opacity: 1;
-  pointer-events: all; */
-  display: flex;
+  pointer-events: all;
 }
 
 .modal__close {
