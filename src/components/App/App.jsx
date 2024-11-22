@@ -31,33 +31,23 @@ function App() {
     setActiveModal("");
   };
 
-  // // Add event listeners for ESC and outside click when modal is open
-  // useEffect(() => {
-  //   if (activeModal) {
-  //     const handleEscKey = (event) => {
-  //       if (event.key === "Escape") {
-  //         closeActiveModal(); // Close the modal if ESC is pressed
-  //       }
-  //     };
+  useEffect(() => {
+    if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
 
-  //     const handleOutsideClick = (event) => {
-  //       const modalContent = document.querySelector(".modal__content");
-  //       if (modalContent && !modalContent.contains(event.target)) {
-  //         closeActiveModal(); // Close the modal if click is outside the modal content
-  //       }
-  //     };
+    const handleEscClose = (e) => {
+      // define the function inside useEffect not to lose the reference on rerendering
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
 
-  //     // Add event listeners
-  //     window.addEventListener("keydown", handleEscKey);
-  //     window.addEventListener("click", handleOutsideClick);
+    document.addEventListener("keydown", handleEscClose);
 
-  //     // Cleanup event listeners when modal closes or component unmounts
-  //     return () => {
-  //       window.removeEventListener("keydown", handleEscKey);
-  //       window.removeEventListener("click", handleOutsideClick);
-  //     };
-  //   }
-  // }, [activeModal]); // Only run when `activeModal` changes
+    return () => {
+      // don't forget to add a clean up function for removing the listener
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]); // watch activeModal here
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -85,7 +75,8 @@ function App() {
         title="New garment"
         buttonText="Add garment"
         activeModal={activeModal}
-        onClose={closeActiveModal}>
+        onClose={closeActiveModal}
+        isOpen={activeModal === "add-garment"}>
         <label
           htmlFor="name"
           className="modal__label">
@@ -117,6 +108,7 @@ function App() {
               id="hot"
               type="radio"
               className="modal__radio-input"
+              name="radiotype"
             />
             Hot
           </label>
@@ -127,6 +119,7 @@ function App() {
               id="warm"
               type="radio"
               className="modal__radio-input"
+              name="radiotype"
             />
             Warm
           </label>
@@ -137,6 +130,7 @@ function App() {
               id="cold"
               type="radio"
               className="modal__radio-input"
+              name="radiotype"
             />
             Cold
           </label>
@@ -146,6 +140,7 @@ function App() {
         activeModal={activeModal}
         card={selectedCard}
         onClose={closeActiveModal}
+        isOpen={activeModal === "preview"}
       />
     </div>
   );
