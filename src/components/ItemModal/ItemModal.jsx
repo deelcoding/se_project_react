@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./ItemModal.css";
 
 function ItemModal({ activeModal, onClose, card }) {
