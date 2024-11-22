@@ -29,7 +29,7 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
-  // };
+  };
 
   // // Add event listeners for ESC and outside click when modal is open
   // useEffect(() => {
