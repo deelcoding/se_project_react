@@ -29,35 +29,35 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
-  };
+  // };
 
-  // Add event listeners for ESC and outside click when modal is open
-  useEffect(() => {
-    if (activeModal) {
-      const handleEscKey = (event) => {
-        if (event.key === "Escape") {
-          closeActiveModal(); // Close the modal if ESC is pressed
-        }
-      };
+  // // Add event listeners for ESC and outside click when modal is open
+  // useEffect(() => {
+  //   if (activeModal) {
+  //     const handleEscKey = (event) => {
+  //       if (event.key === "Escape") {
+  //         closeActiveModal(); // Close the modal if ESC is pressed
+  //       }
+  //     };
 
-      const handleOutsideClick = (event) => {
-        const modalContent = document.querySelector(".modal__content");
-        if (modalContent && !modalContent.contains(event.target)) {
-          closeActiveModal(); // Close the modal if click is outside the modal content
-        }
-      };
+  //     const handleOutsideClick = (event) => {
+  //       const modalContent = document.querySelector(".modal__content");
+  //       if (modalContent && !modalContent.contains(event.target)) {
+  //         closeActiveModal(); // Close the modal if click is outside the modal content
+  //       }
+  //     };
 
-      // Add event listeners
-      window.addEventListener("keydown", handleEscKey);
-      window.addEventListener("click", handleOutsideClick);
+  //     // Add event listeners
+  //     window.addEventListener("keydown", handleEscKey);
+  //     window.addEventListener("click", handleOutsideClick);
 
-      // Cleanup event listeners when modal closes or component unmounts
-      return () => {
-        window.removeEventListener("keydown", handleEscKey);
-        window.removeEventListener("click", handleOutsideClick);
-      };
-    }
-  }, [activeModal]); // Only run when `activeModal` changes
+  //     // Cleanup event listeners when modal closes or component unmounts
+  //     return () => {
+  //       window.removeEventListener("keydown", handleEscKey);
+  //       window.removeEventListener("click", handleOutsideClick);
+  //     };
+  //   }
+  // }, [activeModal]); // Only run when `activeModal` changes
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
