@@ -31,23 +31,25 @@ function App() {
     setActiveModal("");
   };
 
-  useEffect(() => {
-    if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
+  // useEffect(() => {
+  //   if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
 
-    const handleEscClose = (e) => {
-      // define the function inside useEffect not to lose the reference on rerendering
-      if (e.key === "Escape") {
-        handleCloseModal();
-      }
-    };
+  //   const handleEscClose = (e) => {
+  //     // define the function inside useEffect not to lose the reference on rerendering
+  //     if (e.key === "Escape") {
+  //       handleCloseModal();
+  //     }
+  //   };
 
-    document.addEventListener("keydown", handleEscClose);
+  //   document.addEventListener("keydown", handleEscClose);
 
-    return () => {
-      // don't forget to add a clean up function for removing the listener
-      document.removeEventListener("keydown", handleEscClose);
-    };
-  }, [activeModal]); // watch activeModal here
+  //   return () => {
+  //     // don't forget to add a clean up function for removing the listener
+  //     document.removeEventListener("keydown", handleEscClose);
+  //   };
+  // }, [activeModal]); // watch activeModal here
+
+  // The above code that is commented out, that you suggested is not working as intended
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
