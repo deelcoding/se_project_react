@@ -2,11 +2,14 @@ import headerLogo from "../../images/headerLogo.png";
 import userAvatar from "../../images/user_avatar.png";
 import "./Header.css";
 
-const currentDate = new Date().toLocaleString("default", {
-  month: "long",
-  day: "numeric",
-});
-function Header({onAddGarment}) {
+
+function Header({onAddGarment, weatherData}) {
+
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <header className="header">
       <img
@@ -15,7 +18,7 @@ function Header({onAddGarment}) {
         className="header__logo"
       />
       <p className="header__date-and-location">
-        {currentDate}, Current Location will be here
+        {currentDate}, {weatherData.city}
       </p>
       <button onClick={onAddGarment} type="button" className="header__button">
         <span className="header__button-text">+ Add clothes</span>

@@ -37,5 +37,9 @@ export const defaultClothingItems = [
   },
 ];
 
-// Find all close buttons
-export const closeButtons = document.querySelectorAll(".modal__close");
+export const coordinates = {
+  latitude: 38.283508,
+  longitude: -85.822998,
+};
+
+export const APIkey = "0baf33db4423e177fb825fecda1406e4";
