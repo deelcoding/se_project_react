@@ -4,8 +4,8 @@ import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
-// import ItemCard from "../ItemCard/ItemCard.jsx"
-// import Footer from "../Footer/Footer.jsx";
+import ItemCard from "../ItemCard/ItemCard.jsx";
+import Footer from "../Footer/Footer.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,7 +16,7 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-  }
+  };
 
   const onAddGarment = () => {
     setActiveModal("add-garment");
@@ -30,8 +30,11 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header onAddGarment={onAddGarment} />
-        <Main weatherData={weatherData} />
-        {/* <Footer /> */}
+        <Main
+          weatherData={weatherData}
+          handleCardClick={handleCardClick}
+        />
+        <Footer />
       </div>
       <ModalWithForm
         title="New garment"
@@ -94,7 +97,11 @@ function App() {
           </label>
         </fieldset>
       </ModalWithForm>
-      <ItemModal activeModal={activeModal} card={selectedCard} onClose={closeActiveModal}/>
+      <ItemModal
+        activeModal={activeModal}
+        card={selectedCard}
+        onClose={closeActiveModal}
+      />
     </div>
   );
 }
