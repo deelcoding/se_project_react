@@ -1,7 +1,14 @@
 import { Children } from "react";
 import "./ModalWithForm.css";
 
-function ModalWithForm({ children, buttonText, title, activeModal, onClose, isOpen }) {
+function ModalWithForm({
+  children,
+  buttonText,
+  title,
+  activeModal,
+  onClose,
+  isOpen,
+}) {
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content">
@@ -9,7 +16,8 @@ function ModalWithForm({ children, buttonText, title, activeModal, onClose, isOp
         <button
           onClick={onClose}
           type="button"
-          className="modal__close" />
+          className="modal__close"
+        />
         <form
           action=""
           className="modal__form">
