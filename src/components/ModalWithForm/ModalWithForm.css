@@ -124,3 +124,28 @@
   font-weight: 700;
   line-height: 20px;
 }
+
+@media screen and (max-width: 630px) {
+  .modal__close {
+    width: 8px;
+    height: 8px;
+  }
+
+  .modal__content {
+    width: 282px;
+    padding: 25px 22px;
+  }
+
+  .modal__legend {
+    text-align: center;
+  }
+
+  .modal__radio-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .modal__submit {
+    margin: 32px auto 0;
+  }
+}

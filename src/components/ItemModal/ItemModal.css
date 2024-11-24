@@ -30,3 +30,18 @@
 	font-weight: 700;
 	line-height: 24px;
 }
+
+@media screen and (max-width: 630px) {
+	.modal__close {
+			width: 15px;
+			height: 15px;
+	}
+
+	.modal__caption {
+			font-size: 18px;
+	}
+
+	.modal__weather {
+		font-size: 18px;
+	}
+}
