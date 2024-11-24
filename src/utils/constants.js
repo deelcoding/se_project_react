@@ -37,6 +37,79 @@ export const defaultClothingItems = [
   },
 ];
 
+export const weatherOptions = [
+  {
+    day: true,
+    condition: "clear",
+    url: new URL("../images/Day/Sunny.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "clouds",
+    url: new URL("../images/Day/Cloudy.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "rain",
+    url: new URL("../images/Day/Rain.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "thunderstorm",
+    url: new URL("../images/Day/Storm.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "snow",
+    url: new URL("../images/Day/Snow.png", import.meta.url).href,
+  },
+  {
+    day: true,
+    condition: "atmosphere",
+    url: new URL("../images/Day/Fog.png", import.meta.url).href,
+  },
+
+  {
+    day: false,
+    condition: "clear",
+    url: new URL("../images/Night/NightSunny.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "clouds",
+    url: new URL("../images/Night/NightCloudy.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "rain",
+    url: new URL("../images/Night/NightRain.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "thunderstorm",
+    url: new URL("../images/Night/NightStorm.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "snow",
+    url: new URL("../images/Night/NightSnow.png", import.meta.url).href,
+  },
+  {
+    day: false,
+    condition: "atmosphere",
+    url: new URL("../images/Night/NightFog.png", import.meta.url).href,
+  },
+];
+
+export const defaultWeatherOptions = {
+  day: {
+    url: new URL("../images/Day/default.png", import.meta.url).href,
+  },
+  night: {
+    url: new URL("../images/Night/default.png", import.meta.url).href,
+  },
+};
+
 export const coordinates = {
   latitude: 38.283508,
   longitude: -85.822998,
