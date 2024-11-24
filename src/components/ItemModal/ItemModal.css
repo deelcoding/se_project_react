@@ -11,37 +11,29 @@
 
 .modal__footer {
   padding-left: 32px;
-		font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk";
 }
 
 .modal__caption {
-	margin: 0;
-	padding-top: 20px;
-	padding-bottom: 12px;
-	font-size: 20px;
-	font-weight: 700;
-	line-height: 24px;
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 .modal__weather {
-	margin: 0;
-	padding-bottom: 32px;
-	font-size: 20px;
-	font-weight: 700;
-	line-height: 24px;
+  margin: 0;
+  padding-bottom: 32px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 @media screen and (max-width: 630px) {
-	.modal__close {
-			width: 15px;
-			height: 15px;
-	}
-
-	.modal__caption {
-			font-size: 18px;
-	}
-
-	.modal__weather {
-		font-size: 18px;
-	}
+  .modal__content_type_image {
+    margin-right: 16px;
+    margin-left: 16px;
+  }
 }
