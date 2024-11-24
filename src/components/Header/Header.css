@@ -49,3 +49,40 @@
   padding: 0;
   color: black;
 }
+
+@media screen and (max-width: 700px) {
+  .header {
+    margin: 0 auto;
+    max-width: calc(100% - 40px);
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 16px 0 14px;
+  }
+
+  .header__logo {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .header__button {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .header__button-text {
+    vertical-align: middle;
+  }
+
+  .header__user-container {
+    margin: 0 auto;
+  }
+
+  .header__username {
+    margin: 0;
+  }
+
+  .header__avatar {
+    display: none;
+  }
+}
