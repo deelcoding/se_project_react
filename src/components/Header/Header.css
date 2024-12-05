@@ -1,11 +1,18 @@
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 32px 0 28px;
 }
 
 .header__logo {
   margin-right: 24px;
+}
+
+.header__logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .header__date-and-location {
@@ -38,6 +45,7 @@
   padding: 0;
   border: none;
   cursor: pointer;
+  background-color: transparent;
 }
 
 .header__button-text {
