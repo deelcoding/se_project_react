@@ -34,6 +34,7 @@
   top: 6px;
   left: 10px;
   margin: 0;
+  padding: 0;
 }
 
 .switch__slider-C {
@@ -45,6 +46,7 @@
   top: 6px;
   left: 37px;
   margin: 0;
+  padding: 0;
 }
 
 /* .react-switch-checkbox {

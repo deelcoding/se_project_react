@@ -30,13 +30,11 @@ const ToggleSwitch = () => {
     if (currentTemperatureUnit === "F") handleToggleSwitchChange("C");
   };
   return (
-    <label
-      htmlFor=""
-      className="switch"
-      onChange={handleChange}>
+    <label className="switch">
       <input
         type="checkbox"
         className="switch__box"
+        onChange={handleChange}
       />
       <span
         className={

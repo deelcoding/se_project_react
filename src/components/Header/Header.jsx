@@ -10,7 +10,7 @@ function Header({ onAddGarment, weatherData }) {
     day: "numeric",
   });
 
-  // const [value, setValue] = useState(false);
+  const [value, setValue] = useState(false);
 
   return (
     <header className="header">
@@ -26,9 +26,9 @@ function Header({ onAddGarment, weatherData }) {
       </div>
       <div className="header__user-container">
         <ToggleSwitch
-        // isOn={value}
+        isOn={value}
         // onColor="#EF476F"
-        // handleToggle={() => setValue(!value)}
+        handleToggle={() => setValue(!value)}
         />
         <button
           onClick={onAddGarment}

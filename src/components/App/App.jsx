@@ -19,14 +19,14 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
 
-  useEffect(() => {
-    api
-      .getItemList()
-      .then((items) => {
-        setClothingItems(items);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   api
+  //     .getItemList()
+  //     .then((items) => {
+  //       setClothingItems(items);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -47,24 +47,24 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const handleAddItemSubmit = (item) => {
-    api
-      .addItem(item)
-      .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
-        closeAllModals();
-      })
-      .catch((err) => console.log(err));
-  };
+  // const handleAddItemSubmit = (item) => {
+  //   api
+  //     .addItem(item)
+  //     .then((newItem) => {
+  //       setClothingItems([newItem, ...clothingItems]);
+  //       closeAllModals();
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
-  const handleCardDelete = (card) => {
-    api
-      .removeItem(card.id)
-      .then(() => {
-        setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
-      })
-      .catch((err) => console.log(err));
-  };
+  // const handleCardDelete = (card) => {
+  //   api
+  //     .removeItem(card.id)
+  //     .then(() => {
+  //       setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   useEffect(() => {
     if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
