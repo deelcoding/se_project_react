@@ -26,9 +26,9 @@ function Header({ onAddGarment, weatherData }) {
       </div>
       <div className="header__user-container">
         <ToggleSwitch
-        isOn={value}
-        // onColor="#EF476F"
-        handleToggle={() => setValue(!value)}
+          // isOn={value}
+          // onColor="#EF476F"
+          // handleToggle={() => setValue(!value)}
         />
         <button
           onClick={onAddGarment}
