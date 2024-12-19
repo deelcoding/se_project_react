@@ -5,14 +5,19 @@ import { useState } from "react";
 const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setName(e.target.value);
   };
 
   const [link, setUrl] = useState("");
   const handleUrlChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setUrl(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAddItem({ name, link });
   };
 
   return (
@@ -21,7 +26,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
       buttonText="Add garment"
       onClose={onClose}
       isOpen={isOpen}
-      onSubmit={() => onAddItem({ name })}>
+      onSubmit={() => onAddItem(handleSubmit)}>
       <label
         htmlFor="name"
         className="modal__label">
@@ -44,7 +49,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
           className="modal__input"
           id="imageUrl"
           placeholder="Image URL"
-          value={url}
+          value={link}
           onChange={handleUrlChange}
         />
       </label>

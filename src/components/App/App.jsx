@@ -48,8 +48,9 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  const onAddItem = (e) => {
+  const onAddItem = (values) => {
     e.preventDefault();
+    console.log(values);
   };
 
   // const handleAddItemSubmit = (item) => {
