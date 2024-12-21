@@ -1,0 +1,96 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0 28px;
+}
+
+.header__logo {
+  margin-right: 24px;
+}
+
+.header__logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__date-and-location {
+  margin: 0;
+  font-family: "Cabinet Grotesk Bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.header__user-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__username {
+  margin: 0;
+  font-family: "Cabinet Grotesk Bold", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.header__button {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 20px 0 auto;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.header__button-text {
+  display: inline;
+  font-family: "Cabinet Grotesk Bold", sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  padding: 0;
+  color: black;
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    margin: 0 auto;
+    max-width: calc(100% - 40px);
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 16px 0 14px;
+  }
+
+  .header__logo {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .header__button {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .header__button-text {
+    vertical-align: middle;
+  }
+
+  .header__user-container {
+    margin: 0 auto;
+  }
+
+  .header__username {
+    margin: 0;
+  }
+
+  .header__avatar {
+    display: none;
+  }
+}
