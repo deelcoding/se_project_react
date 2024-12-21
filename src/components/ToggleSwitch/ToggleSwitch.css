@@ -1,0 +1,64 @@
+.toggle-switch {
+	position: relative;
+	display: inline-block;
+	width: 56px;
+	height: 28px;
+	/* margin-left: px; */
+	font-family: "Cabinet Grotesk", sans-serif;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.toggle-switch__checkbox {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.toggle-switch__slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border: 2px solid #7e7e7e;
+	transition: 0.4s;
+	border-radius: 20px;
+}
+
+.toggle-switch__slider:before {
+	position: absolute;
+	content: "";
+	height: 28px;
+	width: 28px;
+	/* left: 4px; */
+	/* bottom: 1px; */
+	background-color: #000;
+	transition: 0.4s;
+	border-radius: 20px;
+}
+
+/* .toggle-switch__checkbox:checked + .toggle-switch__slider {
+	background-color: #000; 
+} */
+
+.toggle-switch__checkbox:checked + .toggle-switch__slider:before {
+	transform: translateX(26px);
+}
+
+.toggle-switch__label {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-weight: bold;
+	color: white; 
+}
+
+.toggle-switch__label--left {
+	left: 10px;
+}
+
+.toggle-switch__label--right {
+	right: 10px;
+}
