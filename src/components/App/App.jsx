@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+
 import "./App.css";
+
 import { coordinates, APIkey } from "../../utils/constants.js";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
+
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Footer from "../Footer/Footer.jsx";
-import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
+import Profile from "../Profile/Profile.jsx";
 
 function App() {
-  // const [count, setCount] = useState(0);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: 999 },
+    temp: { F: 999, C: 999 },
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
@@ -75,10 +79,22 @@ function App() {
             onAddGarment={onAddGarment}
             weatherData={weatherData}
           />
-          <Main
-            weatherData={weatherData}
-            handleCardClick={handleCardClick}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={<Profile />}
+            />
+          </Routes>
+
           <Footer />
         </div>
         <ModalWithForm
