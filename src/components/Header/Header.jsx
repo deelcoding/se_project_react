@@ -14,19 +14,21 @@ function Header({ onAddGarment, weatherData }) {
 
   return (
     <header className="header">
-      <img
-        src={headerLogo}
-        alt="App Logo"
-        className="header__logo"
-      />
-      <p className="header__date-and-location">
-        {currentDate}, {weatherData.city}
-      </p>
-      <ToggleSwitch
-        isOn={value}
-        handleToggle={() => setValue(!value)}
-      />
+      <div className="header__logo-location">
+        <img
+          src={headerLogo}
+          alt="App Logo"
+          className="header__logo"
+        />
+        <p className="header__date-and-location">
+          {currentDate}, {weatherData.city}
+        </p>
+      </div>
       <div className="header__user-container">
+        <ToggleSwitch
+          isOn={value}
+          handleToggle={() => setValue(!value)}
+        />
         <button
           onClick={onAddGarment}
           type="button"

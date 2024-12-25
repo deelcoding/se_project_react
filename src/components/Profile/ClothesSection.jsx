@@ -1,26 +1,28 @@
 import "./ClothesSection.css";
-import avatar from "../../images/user_avatar.png";
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection() {
+function ClothesSection({onClick, onCardClick}) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__heading">
-        <p className="clothes-section__label">Your Items</p>
-        <button className="clothes-section__add">+ Add New</button>
+        <p className="clothes-section__label">Your items</p>
+        <button
+          // onClick={onAddGarment}
+          type="button"
+          className="clothes-section__add">
+          <span className="clothes-section__button-text">+ Add new</span>
+        </button>
       </div>
       <ul className="cards__list">
         {defaultClothingItems
-          .filter((item) => {
-            return item.weather === weatherData.type;
-          })
           .map((item) => {
             return (
               <ItemCard
                 key={item._id}
                 item={item}
-                onCardClick={handleCardClick}
+                // TO-DO - Pass below as a prop
+                // onCardClick={handleCardClick}
               />
             );
           })}

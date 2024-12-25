@@ -10,7 +10,6 @@ function SideBar() {
         alt="User Avatar"
       />
       <p className="sidebar__username">Terrence Tegegne</p>
-						
     </div>
   );
 }
