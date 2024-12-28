@@ -14,15 +14,14 @@ function ClothesSection({onClick, onCardClick}) {
           <span className="clothes-section__button-text">+ Add new</span>
         </button>
       </div>
-      <ul className="cards__list">
+      <ul className="clothes-section__items">
         {defaultClothingItems
           .map((item) => {
             return (
               <ItemCard
                 key={item._id}
                 item={item}
-                // TO-DO - Pass below as a prop
-                // onCardClick={handleCardClick}
+                onCardClick={onCardClick}
               />
             );
           })}
