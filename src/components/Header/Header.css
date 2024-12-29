@@ -5,6 +5,12 @@
   padding: 32px 0 28px;
 }
 
+.header__link {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
 .header__logo-location {
   display: flex;
   flex-direction: row;
@@ -15,12 +21,6 @@
   margin-right: 24px;
 }
 
-.header__logo-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 .header__date-and-location {
   margin: 0;
   font-family: "Cabinet Grotesk Bold", sans-serif;
@@ -28,7 +28,18 @@
   font-weight: 700;
 }
 
-.header__user-container {
+.header__right {
+  display: flex;
+  flex-direction: row;
+}
+
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.header__profile {
   display: flex;
   flex-direction: row;
   align-items: center;
