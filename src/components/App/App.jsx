@@ -108,7 +108,7 @@ function App() {
       .addItems(item)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
-        closeModal();
+        handleCloseModal();
       })
       .catch((err) => console.log(err));
   };
@@ -118,7 +118,7 @@ function App() {
       .deleteItem(card._id)
       .then(() => {
         setClothingItems(clothingItems.filter((c) => c._id !== card._id));
-        closeModal();
+        handleCloseModal();
       })
       .catch((err) => console.elog(err));
   };

@@ -1,4 +1,7 @@
 .modal__content_type_image {
+  max-width: 498px;
+  background-color: #ffffff;
+  position: relative;
   padding: 0;
   border-radius: 16px;
 }

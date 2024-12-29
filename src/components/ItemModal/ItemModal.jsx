@@ -3,14 +3,14 @@ import "./ItemModal.css";
 function ItemModal({ onClose, card, isOpen, handleDeleteItem }) {
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
-      <div className="modal__content modal__content_type_image">
+      <div className="modal__content_type_image">
         <button
           onClick={onClose}
           type="button"
           className="modal__close"
         />
         <img
-          src={card.link}
+          src={card.imageUrl}
           alt={card.name}
           className="modal__image"
         />
