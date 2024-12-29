@@ -120,7 +120,7 @@ function App() {
         setClothingItems(clothingItems.filter((c) => c._id !== card._id));
         handleCloseModal();
       })
-      .catch((err) => console.elog(err));
+      .catch((err) => console.log(err));
   };
 
   return (
