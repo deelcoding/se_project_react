@@ -22,6 +22,7 @@
   border: none;
   color: rgba(0, 0, 0, 0.6);
   background-color: transparent;
+  cursor: pointer;
 }
 
 .clothes-section__button-text {

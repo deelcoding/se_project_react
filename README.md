@@ -4,6 +4,10 @@
 
 The idea of the application is pretty simple - we make a call to an API, which then responds with the daily weather forecast. We collect the weather data, process it, and then based on the forecast, we recommend suitable clothing to the user.
 
+If you would like to download this code and run it for yourself on your computer, to get the items to render, you must run the command below in VSCode before running "npm run deploy".
+
+json-server --watch db.json --id _id --port 3001
+
 ## Sprint 10
 Sprint 10 consisted of setting up the initial project with HTML, CSS, and JS using React.
 
