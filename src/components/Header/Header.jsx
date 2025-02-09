@@ -5,7 +5,7 @@ import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
-function Header({ onAddGarment, weatherData }) {
+function Header({ onSignUp, onLogIn, onAddGarment, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -39,8 +39,20 @@ function Header({ onAddGarment, weatherData }) {
             className="header__button">
             <span className="header__button-text">+ Add clothes</span>
           </button>
+          <button
+            onClick={onSignUp}
+            type="button"
+            className="header__button">
+            <span className="header__button-text">Sign Up</span>
+          </button>
+          <button
+            onClick={onLogIn}
+            type="button"
+            className="header__button">
+            <span className="header__button-text">Log In</span>
+          </button>
         </div>
-        <Link to="/profile" className="header__link">
+        {/* <Link to="/profile" className="header__link">
           <div className="header__profile">
             <p className="header__username">Terrence Tegegne</p>
             <img
@@ -49,7 +61,7 @@ function Header({ onAddGarment, weatherData }) {
               className="header__avatar"
             />
           </div>
-        </Link>
+        </Link> */}
       </div>
     </header>
   );

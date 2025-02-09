@@ -39,8 +39,30 @@ const deleteItem = (id) => {
   }).then(checkResponse);
 };
 
+const signIn = () => {
+  return fetch(`${baseUrl}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  }).then(checkResponse);
+};
+
+const signUp = () => {
+  return fetch(`${baseUrl}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, avatar, email, password }),
+  }).then(checkResponse);
+};
+
 export const api = {
   getItems,
   addItems,
   deleteItem,
+  signIn,
+  signUp,
 };
