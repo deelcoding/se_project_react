@@ -19,57 +19,63 @@ const RegisterModal = ({ handleCloseModal, onSubmit, isOpen, onLogin }) => {
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}>
-      <label className="modal__label">
-        Email*
+      <label
+        htmlFor="email"
+        className="modal__label">
+        Email*{" "}
         <input
           type="email"
           className="modal__input"
+          id="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
-      <label className="modal__label">
-        Password*
+      <label
+        htmlFor="password"
+        className="modal__label">
+        Password*{" "}
         <input
           type="password"
           className="modal__input"
+          id="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <label className="modal__label">
-        Name *
+      <label
+        htmlFor="name"
+        className="modal__label">
+        Name *{" "}
         <input
           type="text"
           className="modal__input"
+          id="name"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
       </label>
-      <label className="modal__label">
-        Avatar URL *
+      <label
+        htmlFor="avatarURL"
+        className="modal__label">
+        Avatar URL *{" "}
         <input
           type="url"
           className="modal__input"
+          id="imageUrl"
           placeholder="Avatar URL"
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}
           required
         />
       </label>
-						<div className="modal__footer">
-        <span
-          className="modal__link"
-          onClick={onLogin}>
-          or Log In
-        </span>
-      </div>
+      {/* <p onClick={onLogin}>Already have an account? Log in</p> */}
     </ModalWithForm>
   );
 };

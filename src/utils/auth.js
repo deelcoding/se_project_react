@@ -1,4 +1,4 @@
-const API_URL = "https://your-api.com";
+const API_URL = "http://localhost:3001";
 
 export const signup = function ({ name, avatar, email, password }) {
   return fetch(`${API_URL}/signup`, {

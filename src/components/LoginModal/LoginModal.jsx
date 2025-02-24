@@ -13,39 +13,39 @@ const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
   return (
     <ModalWithForm
       title="Log In"
-      buttonText="Login"
+      buttonText="Log In"
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}>
-      <label className="modal__label">
-        Email
+      <label
+        htmlFor="email"
+        className="modal__label">
+        Email*{" "}
         <input
           type="email"
           className="modal__input"
+          id="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
-      <label className="modal__label">
-        Password
+      <label
+        htmlFor="password"
+        className="modal__label">
+        Password*{" "}
         <input
           type="password"
           className="modal__input"
+          id="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <div className="modal__footer">
-        <span
-          className="modal__link"
-          onClick={onSignUp}>
-          or Sign Up
-        </span>
-      </div>
+      {/* <p onClick={onSignUp}>Don't have an account? Sign up</p> */}
     </ModalWithForm>
   );
 };
