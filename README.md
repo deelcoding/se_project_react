@@ -16,6 +16,10 @@ Sprint 10 consisted of setting up the initial project with HTML, CSS, and JS usi
 
 Sprint 11 consisted of setting up the API requests for the forms to add and delete different clothing items.
 
+## Sprint 14
+
+Sprint 14 consisted of connected the back-end to the front-end. In this project, I setup the sign up, sign in(log in), and sign out features, as well as, the including likes and dislikes to the clothing items.
+
 ## Links
 
 - [Back-end Code (Express Repo)](https://github.com/deelcoding/se_project_express)
