@@ -4,7 +4,7 @@ import userAvatar from "../../images/user_avatar.png";
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
 function Header({ onSignUp, onLogIn, onAddGarment, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -13,7 +13,7 @@ function Header({ onSignUp, onLogIn, onAddGarment, weatherData }) {
   });
 
   const [value, setValue] = useState(false);
-  const { user } = useContext(CurrentUserContext);
+  const { user } = useContext(CurrentUserContext) || {};
 
   const renderAvatar = () => {
     if (user.avatar) {

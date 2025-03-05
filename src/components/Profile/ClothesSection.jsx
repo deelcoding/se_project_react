@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./ClothesSection.css";
 // import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
@@ -7,9 +7,10 @@ import ItemCard from "../ItemCard/ItemCard";
 function ClothesSection({ onAddGarment, onCardClick, clothingItems }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const userClothingItems = clothingItems.filter(
-    (item) => item.owner === currentUser._id
-  );
+  const userClothingItems = currentUser
+  ? clothingItems.filter((item) => item.owner === currentUser._id)
+  : [];
+
 
   return (
     <div className="clothes-section">

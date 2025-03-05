@@ -18,6 +18,7 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import RegisterModal from "../RegisterModel/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
+// import EditProfileModal from "../Profile/EditProfileModal.jsx";
 
 function App() {
   /**************************************************************************
@@ -77,6 +78,10 @@ function App() {
     setActiveModal("log-in");
   };
 
+  const onEditProfile = () => {
+    setActiveModal("edit-profile");
+  };
+
   const handleCloseModal = () => {
     setActiveModal("");
   };
@@ -84,6 +89,31 @@ function App() {
   /**************************************************************************
    *                               USE EFFECT                               *
    **************************************************************************/
+
+  // const [user, setUser] = useState(null);
+  // const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("jwt");
+
+  //   if (token) {
+  //     checkAuth(token)
+  //       .then((userData) => {
+  //         if (userData) {
+  //           setCurrentUser(userData);
+  //           setIsLoggedIn(true);
+  //         } else {
+  //           localStorage.removeItem("jwt");
+  //           setIsLoggedIn(false);
+  //         }
+  //       })
+  //       .finally(() => setLoading(false));
+  //     } else {
+  //       setLoading(false);
+  //     }
+  //       // .catch(() => setIsLoggedIn(false));
+  //   }
+  // }, []);
 
   // Check for token validity when the component mounts
   const [user, setUser] = useState(null); // State for storing user data
@@ -98,10 +128,11 @@ function App() {
       checkAuth(token)
         .then((userData) => {
           if (userData) {
-            setUser(userData); // Set user data if token is valid
+            setCurrentUser(userData);
+            setIsLoggedIn(true);
           } else {
-            // If token is invalid, remove it from localStorage
             localStorage.removeItem("jwt");
+            setIsLoggedIn(false);
           }
         })
         .finally(() => setLoading(false)); // Finish loading state
@@ -109,21 +140,6 @@ function App() {
       setLoading(false); // If no token, finish loading
     }
   }, []); // Run only once when the component mounts
-
-  useEffect(() => {
-    if (!activeModal) return;
-    const handleEscClose = (e) => {
-      if (e.key === "Escape") {
-        handleCloseModal();
-      }
-    };
-
-    document.addEventListener("keydown", handleEscClose);
-
-    return () => {
-      document.removeEventListener("keydown", handleEscClose);
-    };
-  }, [activeModal]);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -154,7 +170,7 @@ function App() {
         setClothingItems([item, ...clothingItems]);
         handleCloseModal();
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   const handleDeleteItem = (card) => {
@@ -164,7 +180,7 @@ function App() {
         setClothingItems(clothingItems.filter((c) => c._id !== card._id));
         handleCloseModal();
       })
-      .catch((err) => console.log(err));
+      .catch(console.error);
   };
 
   const handleRegisterSubmit = (userData) => {
@@ -231,6 +247,10 @@ function App() {
     setActiveModal("log-in");
   };
 
+  const handleEditProfile = () => {
+    setActiveModal("edit-profile");
+  };
+
   // Render loading or profile if user is authenticated
   if (loading) {
     return <div>Loading...</div>;
@@ -266,7 +286,7 @@ function App() {
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onAddGarment={onAddGarment}
-                    user={user}
+                    user={currentUser}
                   />
                 }
               />
@@ -295,6 +315,13 @@ function App() {
               isOpen={activeModal === "log-in"}
               onSubmit={handleLoginSubmit}
               onSignUp={handleSignUp}
+            />
+          )}
+          {activeModal === "edit-profile" && (
+            <EditProfileModal
+              handleCloseModal={handleCloseModal}
+              isOpen={activeModal === "edit-profile"}
+              onSubmit={handleLoginSubmit}
             />
           )}
           {activeModal === "preview" && (

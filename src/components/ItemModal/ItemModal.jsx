@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 import "./ItemModal.css";
 
 function ItemModal({ onClose, card, isOpen, handleDeleteItem }) {
