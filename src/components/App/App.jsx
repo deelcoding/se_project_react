@@ -18,7 +18,7 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import RegisterModal from "../RegisterModel/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
-// import EditProfileModal from "../Profile/EditProfileModal.jsx";
+import EditProfileModal from "../Profile/EditProfileModal.jsx";
 
 function App() {
   /**************************************************************************
@@ -247,10 +247,6 @@ function App() {
     setActiveModal("log-in");
   };
 
-  const handleEditProfile = () => {
-    setActiveModal("edit-profile");
-  };
-
   // Render loading or profile if user is authenticated
   if (loading) {
     return <div>Loading...</div>;
@@ -287,6 +283,7 @@ function App() {
                     clothingItems={clothingItems}
                     onAddGarment={onAddGarment}
                     user={currentUser}
+                    onEditProfile={onEditProfile}
                   />
                 }
               />

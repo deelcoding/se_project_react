@@ -12,7 +12,7 @@ const EditProfileModal = ({ handleCloseModal, onSubmit, isOpen }) => {
 
   return (
     <ModalWithForm
-      title="Edit Profile"
+      title="Change profile data"
       buttonText="Save Changes"
       onClose={handleCloseModal}
       isOpen={isOpen}
@@ -34,7 +34,7 @@ const EditProfileModal = ({ handleCloseModal, onSubmit, isOpen }) => {
       <label
         htmlFor="avatarURL"
         className="modal__label">
-        Avatar URL *{" "}
+        Avatar *{" "}
         <input
           type="url"
           className="modal__input"

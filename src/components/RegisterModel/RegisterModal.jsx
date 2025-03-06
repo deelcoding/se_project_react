@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const RegisterModal = ({ handleCloseModal, onSubmit, isOpen, onLogin }) => {
@@ -75,7 +76,20 @@ const RegisterModal = ({ handleCloseModal, onSubmit, isOpen, onLogin }) => {
           required
         />
       </label>
-      {/* <p onClick={onLogin}>Already have an account? Log in</p> */}
+      <div className="modal__button-container">
+        <button
+          type="submit"
+          className="modal__submit">
+          Sign Up
+        </button>
+        <button
+          className="modal__to-login"
+          type="button"
+          // onClick={handleRegister}
+        >
+          <span className="modal__login-button-text">or Log In</span>
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

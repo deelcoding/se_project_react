@@ -4,12 +4,18 @@ import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Profile({ onCardClick, clothingItems, onAddGarment, currentUser }) {
+function Profile({
+  onCardClick,
+  clothingItems,
+  onAddGarment,
+  currentUser,
+  onEditProfile,
+}) {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="profile">
         <section className="profile__sidebar">
-          <SideBar />
+          <SideBar onEditProfile={onEditProfile} />
         </section>
         <section className="profile__clothing-items">
           <ClothesSection

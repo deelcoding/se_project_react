@@ -23,14 +23,13 @@ function ModalWithForm({
           className="modal__form"
           onSubmit={onSubmit}>
           {children}
-          <section className="test">
+          {/* <section className="test">
             <button
               type="submit"
               className="modal__submit">
               {buttonText}
             </button>
-            <p>or Sign Up</p>
-          </section>
+          </section> */}
         </form>
       </div>
     </div>
