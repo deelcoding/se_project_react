@@ -5,14 +5,6 @@
   justify-content: center;
 }
 
-.card__title {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  position: relative;
-  justify-content: center;
-}
-
 .card__name {
   position: absolute;
   top: 15px;
@@ -32,37 +24,4 @@
   border-radius: 19px;
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.3);
-}
-
-.card__like-button {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  padding: 8px 16px;
-  font-family: "Cabinet Grotesk", sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  color: #ffffff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.card__like-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-.card__like-button_active {
-  background-color: #ff6347;
-  color: #ffffff;
-  border: 2px solid #ff4500;
-}
-
-.card__like-button_active:hover {
-  background-color: #e53e3e;
-  border-color: #c53030;
-  transform: scale(1.1);
 }

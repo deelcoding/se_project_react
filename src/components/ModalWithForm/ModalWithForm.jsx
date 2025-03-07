@@ -23,13 +23,11 @@ function ModalWithForm({
           className="modal__form"
           onSubmit={onSubmit}>
           {children}
-          {/* <section className="test">
-            <button
-              type="submit"
-              className="modal__submit">
-              {buttonText}
-            </button>
-          </section> */}
+          <button
+            type="submit"
+            className="modal__submit">
+            {buttonText}
+          </button>
         </form>
       </div>
     </div>
