@@ -44,6 +44,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   /**************************************************************************
    *                             CLOTHING ITEMS                             *
@@ -89,31 +90,6 @@ function App() {
   /**************************************************************************
    *                               USE EFFECT                               *
    **************************************************************************/
-
-  // const [user, setUser] = useState(null);
-  // const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("jwt");
-
-  //   if (token) {
-  //     checkAuth(token)
-  //       .then((userData) => {
-  //         if (userData) {
-  //           setCurrentUser(userData);
-  //           setIsLoggedIn(true);
-  //         } else {
-  //           localStorage.removeItem("jwt");
-  //           setIsLoggedIn(false);
-  //         }
-  //       })
-  //       .finally(() => setLoading(false));
-  //     } else {
-  //       setLoading(false);
-  //     }
-  //       // .catch(() => setIsLoggedIn(false));
-  //   }
-  // }, []);
 
   // Check for token validity when the component mounts
   const [user, setUser] = useState(null); // State for storing user data
@@ -183,60 +159,37 @@ function App() {
       .catch(console.error);
   };
 
-  const handleRegisterSubmit = (userData) => {
-    api
-      .register(userData)
+  const handleRegisterSubmit = (values) => {
+    setIsLoading(true);
+    registerUser(values)
+      .then(() => loginUser({ email: values.email, password: values.password }))
       .then((res) => {
-        if (res) {
-          return api.login({
-            email: userData.email,
-            password: userData.password,
-          });
-        }
+        localStorage.setItem("jwt", res.token);
+        return fetchUserData(res.token);
       })
-      .then((user) => {
-        if (user) {
-          // Set user state if needed
-          handleCloseModal();
-        }
+      .then((userData) => {
+        setCurrentUser(userData);
+        setIsLoggedIn(true);
+        setActiveModal(""); // ✅ Close modal after login
       })
-      .catch((err) => console.log(err));
+      .catch((error) => console.error("Registration or login failed:", error))
+      .finally(() => setIsLoading(false));
   };
 
-  const handleLoginSubmit = ({ email, password }) => {
-    // Send POST request to the server with email and password
-    fetch("/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Parse the response body as JSON
-          return response.json();
-        }
-        // If the response is not ok, throw an error
-        throw new Error("Login failed");
-      })
+  const handleLoginSubmit = (values) => {
+    setIsLoading(true);
+    loginUser(values)
       .then((res) => {
-        // Check if the response contains a token
-        if (res.token) {
-          // Store the JWT token in localStorage
-          localStorage.setItem("jwt", res.token);
-          console.log("Login successful, token stored in localStorage");
-
-          // Optionally, handle redirect or state update after login
-          // For example, redirecting to the home page:
-          // window.location.href = "/";
-        } else {
-          console.log("No token received in response");
-        }
+        localStorage.setItem("jwt", res.token);
+        return fetchUserData(res.token);
       })
-      .catch((error) => {
-        console.error("Error during login:", error.message || error);
-      });
+      .then((userData) => {
+        setCurrentUser(userData);
+        setIsLoggedIn(true);
+        setActiveModal(""); // ✅ Close modal after login
+      })
+      .catch((error) => console.error("Login failed:", error))
+      .finally(() => setIsLoading(false));
   };
 
   const handleSignUp = () => {
@@ -304,6 +257,7 @@ function App() {
               isOpen={activeModal === "sign-up"}
               onSubmit={handleRegisterSubmit}
               onLogin={handleLogIn}
+              isLoading={isLoading}
             />
           )}
           {activeModal === "log-in" && (
@@ -312,6 +266,7 @@ function App() {
               isOpen={activeModal === "log-in"}
               onSubmit={handleLoginSubmit}
               onSignUp={handleSignUp}
+              isLoading={isLoading}
             />
           )}
           {activeModal === "edit-profile" && (

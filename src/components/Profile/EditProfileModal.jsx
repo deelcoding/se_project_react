@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./EditProfileModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const EditProfileModal = ({ handleCloseModal, onSubmit, isOpen }) => {
@@ -45,7 +46,11 @@ const EditProfileModal = ({ handleCloseModal, onSubmit, isOpen }) => {
           required
         />
       </label>
-      {/* <p onClick={onLogin}>Already have an account? Log in</p> */}
+      <button
+        type="submit"
+        className="modal__submit">
+        Save changes
+      </button>
     </ModalWithForm>
   );
 };

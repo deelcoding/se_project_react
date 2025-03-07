@@ -1,25 +1,29 @@
-import React, { useState } from "react";
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useFormAndValidation from "../../utils/useFormAndValidation";
 
-const RegisterModal = ({ handleCloseModal, onSubmit, isOpen, onLogin }) => {
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const RegisterModal = ({
+  handleCloseModal,
+  onSubmit,
+  isOpen,
+  onLogin,
+  isLoading,
+}) => {
+  const { values, handleChange, isValid, resetForm } = useFormAndValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, avatar, email, password });
+    onSubmit(values);
+    resetForm();
   };
 
   return (
     <ModalWithForm
       title="Sign Up"
-      buttonText="Register"
+      buttonText={isLoading ? "Registering..." : "Next"}
       onClose={handleCloseModal}
       isOpen={isOpen}
-      onSubmit={handleSubmit}>
+      formValid={isValid}>
       <label
         htmlFor="email"
         className="modal__label">
@@ -29,8 +33,8 @@ const RegisterModal = ({ handleCloseModal, onSubmit, isOpen, onLogin }) => {
           className="modal__input"
           id="email"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={values.email}
+          onChange={handleChange}
           required
         />
       </label>
@@ -43,8 +47,8 @@ const RegisterModal = ({ handleCloseModal, onSubmit, isOpen, onLogin }) => {
           className="modal__input"
           id="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange}
           required
         />
       </label>
@@ -57,8 +61,8 @@ const RegisterModal = ({ handleCloseModal, onSubmit, isOpen, onLogin }) => {
           className="modal__input"
           id="name"
           placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={values.name}
+          onChange={handleChange}
           required
         />
       </label>
@@ -71,22 +75,22 @@ const RegisterModal = ({ handleCloseModal, onSubmit, isOpen, onLogin }) => {
           className="modal__input"
           id="imageUrl"
           placeholder="Avatar URL"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
+          value={values.avatar}
+          onChange={handleChange}
           required
         />
       </label>
       <div className="modal__button-container">
         <button
           type="submit"
-          className="modal__submit">
+          className="modal__submit"
+          onSubmit={handleSubmit}>
           Sign Up
         </button>
         <button
           className="modal__to-login"
           type="button"
-          // onClick={handleRegister}
-        >
+          onClick={onLogin}>
           <span className="modal__login-button-text">or Log In</span>
         </button>
       </div>

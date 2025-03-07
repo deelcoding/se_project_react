@@ -1,31 +1,23 @@
-import React, { useState } from "react";
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useFormAndValidation from "../../utils/useFormAndValidation";
 
-const LoginModal = ({
-  handleCloseModal,
-  onSubmit,
-  isOpen,
-  onSignUp,
-  setActiveModal,
-}) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
+  const { values, handleChange, isValid, resetForm } = useFormAndValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ email, password });
+    onSubmit(values);
+    resetForm();
   };
 
   return (
     <ModalWithForm
       title="Log In"
       buttonText="Log In"
-      altButtonText="or Register"
-      altButtonClick={() => setActiveModal("sign-up")}
       onClose={handleCloseModal}
       isOpen={isOpen}
-      onSubmit={handleSubmit}>
+      formValid={isValid}>
       <label
         htmlFor="email"
         className="modal__label">
@@ -35,8 +27,8 @@ const LoginModal = ({
           className="modal__input"
           id="email"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={values.email}
+          onChange={handleChange}
           required
         />
       </label>
@@ -49,22 +41,22 @@ const LoginModal = ({
           className="modal__input"
           id="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange}
           required
         />
       </label>
       <div className="modal__button-container">
         <button
           type="submit"
-          className="modal__submit">
+          className="modal__submit"
+          onSubmit={handleSubmit}>
           Log In
         </button>
         <button
           className="modal__to-register"
           type="button"
-          // onClick={handleRegister}
-        >
+          onClick={onSignUp}>
           <span className="modal__register-button-text">or Sign Up</span>
         </button>
       </div>
