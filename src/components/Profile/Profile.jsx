@@ -10,12 +10,16 @@ function Profile({
   onAddGarment,
   currentUser,
   onEditProfile,
+  setIsLoggedIn,
 }) {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="profile">
         <section className="profile__sidebar">
-          <SideBar onEditProfile={onEditProfile} />
+          <SideBar
+            onEditProfile={onEditProfile}
+            setIsLoggedIn={setIsLoggedIn}
+          />
         </section>
         <section className="profile__clothing-items">
           <ClothesSection

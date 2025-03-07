@@ -1,8 +1,13 @@
 import "./SideBar.css";
 import avatar from "../../images/user_avatar.png";
-import EditProfileModal from "./EditProfileModal";
 
-function SideBar({ onEditProfile }) {
+function SideBar({ onEditProfile, setIsLoggedIn }) {
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
+
   return (
     <div className="sidebar">
       <section className="sidebar__profile">
@@ -21,7 +26,7 @@ function SideBar({ onEditProfile }) {
           <span className="sidebar__button-text">Change profile data</span>
         </button>
         <button
-          onClick={onEditProfile}
+          onClick={handleLogout}
           type="button"
           className="sidebar__button sidebar__button-logout">
           <span className="sidebar__button-text">Log out</span>
