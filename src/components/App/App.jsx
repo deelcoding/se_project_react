@@ -161,7 +161,8 @@ function App() {
 
   const handleRegisterSubmit = (values) => {
     setIsLoading(true);
-    registerUser(values)
+    api
+      .signUp(values)
       .then(() => loginUser({ email: values.email, password: values.password }))
       .then((res) => {
         localStorage.setItem("jwt", res.token);
@@ -178,19 +179,30 @@ function App() {
 
   const handleLoginSubmit = (values) => {
     setIsLoading(true);
-    loginUser(values)
+    api
+      .signIn(values)
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        return fetchUserData(res.token);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          return fetchUserData(res.token);
+        } else {
+          throw new Error("Invalid token received");
+        }
       })
       .then((userData) => {
         setCurrentUser(userData);
         setIsLoggedIn(true);
-        setActiveModal(""); // ✅ Close modal after login
+        setActiveModal("");
       })
-      .catch((error) => console.error("Login failed:", error))
-      .finally(() => setIsLoading(false));
+      .catch((error) => {
+        console.error("Login failed:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
+
+  const handleEditProfile = (values) => {};
 
   const handleSignUp = () => {
     setActiveModal("sign-up");
