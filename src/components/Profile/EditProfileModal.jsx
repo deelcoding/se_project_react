@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./EditProfileModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const EditProfileModal = ({ handleCloseModal, onSubmit, isOpen }) => {

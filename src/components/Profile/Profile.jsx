@@ -3,11 +3,11 @@ import avatar from "../../images/user_avatar.png";
 import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 
-function Profile({ onCardClick, clothingItems, onAddGarment }) {
+function Profile({ onCardClick, clothingItems, onAddGarment, onEditProfile }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar />
+        <SideBar onEditProfile={onEditProfile} />
       </section>
       <section className="profile__clothing-items">
         <ClothesSection

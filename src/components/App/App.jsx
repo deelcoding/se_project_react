@@ -12,8 +12,12 @@ import Main from "../Main/Main.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Footer from "../Footer/Footer.jsx";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+// import RegisterModal from "../RegisterModel/RegisterModal.jsx";
+// import LoginModal from "../LoginModal/LoginModal.jsx";
+import EditProfileModal from "../Profile/EditProfileModal.jsx";
 
 function App() {
   /**************************************************************************
@@ -45,6 +49,14 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
 
   /**************************************************************************
+   *                               USER STATE                               *
+   **************************************************************************/
+
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  /**************************************************************************
    *                                 MODAL                                  *
    **************************************************************************/
   const [activeModal, setActiveModal] = useState("");
@@ -56,6 +68,18 @@ function App() {
 
   const onAddGarment = () => {
     setActiveModal("add-garment");
+  };
+
+  const onSignUp = () => {
+    setActiveModal("sign-up");
+  };
+
+  const onLogIn = () => {
+    setActiveModal("log-in");
+  };
+
+  const onEditProfile = () => {
+    setActiveModal("edit-profile");
   };
 
   const handleCloseModal = () => {
@@ -124,57 +148,85 @@ function App() {
   };
 
   return (
-    <div className="page">
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
-        <div className="page__content">
-          <Header
-            onAddGarment={onAddGarment}
-            weatherData={weatherData}
-          />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  weatherData={weatherData}
-                  handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                />
-              }
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <CurrentTemperatureUnitContext.Provider
+          value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
+          <div className="page__content">
+            <Header
+              onAddGarment={onAddGarment}
+              weatherData={weatherData}
             />
-            <Route
-              path="/profile"
-              element={
-                <Profile
-                  onCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                  onAddGarment={onAddGarment}
-                />
-              }
-            />
-          </Routes>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    weatherData={weatherData}
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                  />
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <Profile
+                    onCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                    onAddGarment={onAddGarment}
+                    onEditProfile={onEditProfile}
+                  />
+                }
+              />
+            </Routes>
 
-          <Footer />
-        </div>
-        {activeModal === "add-garment" && (
-          <AddItemModal
-            handleCloseModal={handleCloseModal}
-            isOpen={activeModal === "add-garment"}
-            onSubmit={handleAddItemSubmit}
-          />
-        )}
-        {activeModal === "preview" && (
-          <ItemModal
-            activeModal={activeModal}
-            card={selectedCard}
-            onClose={handleCloseModal}
-            isOpen={activeModal === "preview"}
-            handleDeleteItem={handleDeleteItem}
-          />
-        )}
-      </CurrentTemperatureUnitContext.Provider>
-    </div>
+            <Footer />
+          </div>
+          {activeModal === "add-garment" && (
+            <AddItemModal
+              handleCloseModal={handleCloseModal}
+              isOpen={activeModal === "add-garment"}
+              onSubmit={handleAddItemSubmit}
+            />
+          )}
+          {activeModal === "sign-up" && (
+            <RegisterModal
+              handleCloseModal={handleCloseModal}
+              isOpen={activeModal === "sign-up"}
+              onSubmit={handleRegisterSubmit}
+              onLogin={handleLogIn}
+              isLoading={isLoading}
+            />
+          )}
+          {activeModal === "log-in" && (
+            <LoginModal
+              handleCloseModal={handleCloseModal}
+              isOpen={activeModal === "log-in"}
+              onSubmit={handleLoginSubmit}
+              onSignUp={handleSignUp}
+              isLoading={isLoading}
+            />
+          )}
+          {activeModal === "edit-profile" && (
+            <EditProfileModal
+              handleCloseModal={handleCloseModal}
+              isOpen={activeModal === "edit-profile"}
+              // onSubmit={handleLoginSubmit}
+            />
+          )}
+          {activeModal === "preview" && (
+            <ItemModal
+              activeModal={activeModal}
+              card={selectedCard}
+              onClose={handleCloseModal}
+              isOpen={activeModal === "preview"}
+              handleDeleteItem={handleDeleteItem}
+            />
+          )}
+        </CurrentTemperatureUnitContext.Provider>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 
