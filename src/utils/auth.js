@@ -21,11 +21,11 @@ export const signin = function ({ email, password }) {
 };
 
 export const checkAuth = (token) => {
-  return fetch("/users/me", {
+  return fetch(`${API_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Attach token in the Authorization header
+      Authorization: `Bearer ${token}`,
     },
   })
     .then((response) => {
@@ -34,11 +34,8 @@ export const checkAuth = (token) => {
       }
       return response.json();
     })
-    .then((data) => {
-      return data; // You can return user data or a success message
-    })
     .catch((error) => {
       console.error("Authentication error:", error.message);
-      return null; // Return null or handle the error as needed
+      return null;
     });
 };

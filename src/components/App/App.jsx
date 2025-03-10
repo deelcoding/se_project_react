@@ -18,6 +18,8 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 // import RegisterModal from "../RegisterModel/RegisterModal.jsx";
 // import LoginModal from "../LoginModal/LoginModal.jsx";
 import EditProfileModal from "../Profile/EditProfileModal.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import { checkAuth } from "../../utils/auth.js";
 
 function App() {
   /**************************************************************************
@@ -123,6 +125,27 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+
+    if (token) {
+      checkAuth(token)
+        .then((userData) => {
+          if (userData) {
+            setCurrentUser(userData);
+            setIsLoggedIn(true);
+          } else {
+            localStorage.removeItem("jwt");
+            setIsLoggedIn(false);
+          }
+        })
+        .catch(() => {
+          localStorage.removeItem("jwt");
+          setIsLoggedIn(false);
+        });
+    }
+  });
+
   /**************************************************************************
    *                                  API                                   *
    **************************************************************************/
@@ -145,6 +168,46 @@ function App() {
         handleCloseModal();
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleRegisterSubmit = (userData) => {
+    setIsLoading(true);
+    api
+      .register(userData)
+      .then((res) => {
+        if (res) {
+          return api.login({
+            email: userData.email,
+            password: userData.password,
+          });
+        }
+        throw new Error("Registration failed");
+      })
+      .then((user) => {
+        setCurrentUser(user);
+        setIsLoggedIn(true);
+        handleCloseModal();
+      })
+      .catch((err) => console.error("Registration/Login Error:", err))
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleLoginSubmit = ({ email, password }) => {
+    setIsLoading(true);
+    api
+      .signin({ email, password })
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setCurrentUser(res.user);
+          setIsLoggedIn(true);
+          handleCloseModal();
+        } else {
+          throw new Error("Login failed: No token received");
+        }
+      })
+      .catch((err) => console.error("Login Error:", err))
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -171,11 +234,15 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <Profile
-                    onCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    onAddGarment={onAddGarment}
-                    onEditProfile={onEditProfile}
+                  <ProtectedRoute
+                    element={
+                      <Profile
+                        onCardClick={handleCardClick}
+                        clothingItems={clothingItems}
+                        onAddGarment={onAddGarment}
+                        onEditProfile={onEditProfile}
+                      />
+                    }
                   />
                 }
               />

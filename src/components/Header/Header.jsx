@@ -1,22 +1,40 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import headerLogo from "../../images/headerLogo.png";
 import userAvatar from "../../images/user_avatar.png";
 import "./Header.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ onAddGarment, weatherData }) {
+function Header({ onSignUp, onLogIn, onAddGarment, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
   const [value, setValue] = useState(false);
+  const { user } = useContext(CurrentUserContext) || {};
+
+  const renderAvatar = () => {
+    if (user.avatar) {
+      return (
+        <img
+          src={user.avatar}
+          alt="Avatar"
+          className="header__avatar"
+        />
+      );
+    }
+    const initial = user.name ? user.name.charAt(0).toUpperCase() : "?";
+    return <div className="header__avatar-placeholder">{initial}</div>;
+  };
 
   return (
     <header className="header">
       <div className="header__logo-location">
-        <Link to="/" className="header__link">
+        <Link
+          to="/"
+          className="header__link">
           <img
             src={headerLogo}
             alt="App Logo"
@@ -33,23 +51,40 @@ function Header({ onAddGarment, weatherData }) {
             isOn={value}
             handleToggle={() => setValue(!value)}
           />
-          <button
-            onClick={onAddGarment}
-            type="button"
-            className="header__button">
-            <span className="header__button-text">+ Add clothes</span>
-          </button>
+          {user ? (
+            <>
+              <button
+                onClick={onAddGarment}
+                type="button"
+                className="header__button">
+                <span className="header__button-text">+ Add clothes</span>
+              </button>
+              <Link
+                to="/profile"
+                className="header__link">
+                <div className="header__profile">
+                  <p className="header__username">{user.name}</p>
+                  {renderAvatar()}
+                </div>
+              </Link>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={onSignUp}
+                type="button"
+                className="header__button">
+                <span className="header__button-text">Sign Up</span>
+              </button>
+              <button
+                onClick={onLogIn}
+                type="button"
+                className="header__button">
+                <span className="header__button-text">Log In</span>
+              </button>
+            </>
+          )}
         </div>
-        <Link to="/profile" className="header__link">
-          <div className="header__profile">
-            <p className="header__username">Terrence Tegegne</p>
-            <img
-              src={userAvatar}
-              alt="Avatar"
-              className="header__avatar"
-            />
-          </div>
-        </Link>
       </div>
     </header>
   );
