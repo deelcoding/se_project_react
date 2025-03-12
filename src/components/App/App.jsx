@@ -15,8 +15,8 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
-// import RegisterModal from "../RegisterModel/RegisterModal.jsx";
-// import LoginModal from "../LoginModal/LoginModal.jsx";
+import RegisterModal from "../RegisterModel/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
 import EditProfileModal from "../Profile/EditProfileModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import { checkAuth } from "../../utils/auth.js";
@@ -86,6 +86,14 @@ function App() {
 
   const handleCloseModal = () => {
     setActiveModal("");
+  };
+
+  const handleSignUp = () => {
+    setActiveModal("sign-up");
+  };
+
+  const handleLogIn = () => {
+    setActiveModal("log-in");
   };
 
   /**************************************************************************
@@ -263,6 +271,8 @@ function App() {
             <Header
               onAddGarment={onAddGarment}
               weatherData={weatherData}
+              onSignUp={onSignUp}
+              onLogIn={onLogIn}
             />
             <Routes>
               <Route
