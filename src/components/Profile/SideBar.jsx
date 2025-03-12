@@ -1,10 +1,14 @@
 import "./SideBar.css";
 import avatar from "../../images/user_avatar.png";
+import { useNavigate } from "react-router-dom";
 
 function SideBar({ onEditProfile, setIsLoggedIn }) {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
+    navigate("/");
   };
 
   return (

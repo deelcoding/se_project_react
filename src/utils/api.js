@@ -39,8 +39,30 @@ const deleteItem = (id) => {
   }).then(checkResponse);
 };
 
+const addCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT", // RESTful convention to add a like
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // include token in header for auth
+    },
+  }).then(checkResponse);
+};
+
+const removeCardLike = (id, token) => {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE", // RESTful convention to remove a like
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};
+
 export const api = {
   getItems,
   addItems,
   deleteItem,
+  addCardLike,
+  removeCardLike,
 };

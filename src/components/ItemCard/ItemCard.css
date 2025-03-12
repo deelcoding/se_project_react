@@ -5,9 +5,15 @@
   justify-content: center;
 }
 
-.card__name {
+.card__title_like {
   position: absolute;
   top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card__name {
   background-color: #ffffff;
   border-radius: 4px;
   margin: 0;
@@ -24,4 +30,27 @@
   border-radius: 19px;
   border: 1px solid;
   border-color: rgba(0, 0, 0, 0.3);
+}
+
+.card__like-button {
+  width: 18px;
+  height: 15px;
+  background-image: url("../../images/Like-button.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.card__like-button_active {
+  width: 18px;
+  height: 15px;
+  background-image: url("../../images/Like-button-active.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
 }
