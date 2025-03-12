@@ -227,13 +227,31 @@ function App() {
       : // if not, send a request to remove the user's id from the card's likes array
         api
           // the first argument is the card's id
-          .removeCardLike(id, token) 
+          .removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
           .catch((err) => console.log(err));
+  };
+
+  const handleEditProfileSubmit = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+    setIsLoading(true);
+
+    api
+      .updateUserProfile({ name, avatar }, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser); // update the context with new user data
+        handleCloseModal(); // close modal after success
+      })
+      .catch((err) => {
+        console.error("Profile update error:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -308,7 +326,7 @@ function App() {
             <EditProfileModal
               handleCloseModal={handleCloseModal}
               isOpen={activeModal === "edit-profile"}
-              // onSubmit={handleLoginSubmit}
+              onSubmit={handleEditProfileSubmit}
             />
           )}
           {activeModal === "preview" && (

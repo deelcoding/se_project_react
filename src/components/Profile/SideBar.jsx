@@ -1,14 +1,13 @@
+import React, { useContext } from "react";
 import "./SideBar.css";
-import avatar from "../../images/user_avatar.png";
-import { useNavigate } from "react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function SideBar({ onEditProfile, setIsLoggedIn }) {
-  const navigate = useNavigate();
+  const currentUser = useContext(CurrentUserContext);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("jwt");
     setIsLoggedIn(false);
-    navigate("/");
   };
 
   return (
@@ -16,11 +15,12 @@ function SideBar({ onEditProfile, setIsLoggedIn }) {
       <section className="sidebar__profile">
         <img
           className="sidebar__avatar"
-          src={avatar}
+          src={currentUser?.avatar || avatar} // fallback to default avatar
           alt="User Avatar"
         />
-        <p className="sidebar__username">Terrence Tegegne</p>
+        <p className="sidebar__username">{currentUser?.name || "User"}</p>
       </section>
+
       <section className="sidebar__edit-profile">
         <button
           onClick={onEditProfile}
@@ -28,6 +28,7 @@ function SideBar({ onEditProfile, setIsLoggedIn }) {
           className="sidebar__button sidebar__button__edit-profile">
           <span className="sidebar__button-text">Change profile data</span>
         </button>
+
         <button
           onClick={handleLogout}
           type="button"

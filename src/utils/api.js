@@ -59,10 +59,22 @@ const removeCardLike = (id, token) => {
   }).then(checkResponse);
 };
 
+const updateUserProfile = ({ name, avatar }, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // assuming JWT auth
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+};
+
 export const api = {
   getItems,
   addItems,
   deleteItem,
   addCardLike,
   removeCardLike,
+  updateUserProfile
 };
