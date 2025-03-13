@@ -207,12 +207,15 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          setCurrentUser(res.user);
-          setIsLoggedIn(true);
-          handleCloseModal();
+          return checkAuth(res.token); // verify and get user info!
         } else {
           throw new Error("Login failed: No token received");
         }
+      })
+      .then((userData) => {
+        setCurrentUser(userData);
+        setIsLoggedIn(true);
+        handleCloseModal();
       })
       .catch((err) => console.error("Login Error:", err))
       .finally(() => setIsLoading(false));

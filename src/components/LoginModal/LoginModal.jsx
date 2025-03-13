@@ -17,7 +17,8 @@ const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
       buttonText="Log In"
       onClose={handleCloseModal}
       isOpen={isOpen}
-      formValid={isValid}>
+      formValid={isValid}
+      onSubmit={handleSubmit}>
       <label
         htmlFor="email"
         className="modal__label">
@@ -27,6 +28,7 @@ const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
           className="modal__input"
           id="email"
           placeholder="Email"
+          name="email"
           value={values.email}
           onChange={handleChange}
           required
@@ -40,6 +42,7 @@ const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
           type="password"
           className="modal__input"
           id="password"
+          name="password"
           placeholder="Password"
           value={values.password}
           onChange={handleChange}
@@ -50,7 +53,7 @@ const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
         <button
           type="submit"
           className="modal__submit"
-          onSubmit={handleSubmit}>
+          disabled={!isValid}>
           Log In
         </button>
         <button

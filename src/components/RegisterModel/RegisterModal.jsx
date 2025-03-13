@@ -23,7 +23,8 @@ const RegisterModal = ({
       buttonText={isLoading ? "Registering..." : "Next"}
       onClose={handleCloseModal}
       isOpen={isOpen}
-      formValid={isValid}>
+      formValid={isValid}
+      onSubmit={handleSubmit}>
       <label
         htmlFor="email"
         className="modal__label">
@@ -33,6 +34,7 @@ const RegisterModal = ({
           className="modal__input"
           id="email"
           placeholder="Email"
+          name="email"
           value={values.email}
           onChange={handleChange}
           required
@@ -47,6 +49,7 @@ const RegisterModal = ({
           className="modal__input"
           id="password"
           placeholder="Password"
+          name="password"
           value={values.password}
           onChange={handleChange}
           required
@@ -61,6 +64,7 @@ const RegisterModal = ({
           className="modal__input"
           id="name"
           placeholder="Name"
+          name="name"
           value={values.name}
           onChange={handleChange}
           required
@@ -73,8 +77,9 @@ const RegisterModal = ({
         <input
           type="url"
           className="modal__input"
-          id="imageUrl"
+          id="avatar"
           placeholder="Avatar URL"
+          name="avatar"
           value={values.avatar}
           onChange={handleChange}
           required
@@ -84,7 +89,7 @@ const RegisterModal = ({
         <button
           type="submit"
           className="modal__submit"
-          onSubmit={handleSubmit}>
+          disabled={!isValid}>
           Sign Up
         </button>
         <button
