@@ -52,8 +52,7 @@ const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
       <div className="modal__button-container">
         <button
           type="submit"
-          className="modal__submit"
-          disabled={!isValid}>
+          className="modal__submit">
           Log In
         </button>
         <button

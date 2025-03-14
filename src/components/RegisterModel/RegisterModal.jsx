@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useFormAndValidation from "../../utils/useFormAndValidation";
@@ -9,6 +10,7 @@ const RegisterModal = ({
   onLogin,
   isLoading,
 }) => {
+  // Just use the values from the custom hook (no need to re-declare `values` with useState)
   const { values, handleChange, isValid, resetForm } = useFormAndValidation();
 
   const handleSubmit = (e) => {
@@ -35,7 +37,7 @@ const RegisterModal = ({
           id="email"
           placeholder="Email"
           name="email"
-          value={values.email}
+          value={values.email || ""}
           onChange={handleChange}
           required
         />
@@ -50,7 +52,7 @@ const RegisterModal = ({
           id="password"
           placeholder="Password"
           name="password"
-          value={values.password}
+          value={values.password || ""}
           onChange={handleChange}
           required
         />
@@ -65,7 +67,7 @@ const RegisterModal = ({
           id="name"
           placeholder="Name"
           name="name"
-          value={values.name}
+          value={values.name || ""}
           onChange={handleChange}
           required
         />
@@ -80,7 +82,7 @@ const RegisterModal = ({
           id="avatar"
           placeholder="Avatar URL"
           name="avatar"
-          value={values.avatar}
+          value={values.avatar || ""}
           onChange={handleChange}
           required
         />
@@ -88,8 +90,7 @@ const RegisterModal = ({
       <div className="modal__button-container">
         <button
           type="submit"
-          className="modal__submit"
-          disabled={!isValid}>
+          className="modal__submit">
           Sign Up
         </button>
         <button

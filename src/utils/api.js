@@ -30,6 +30,14 @@ const addItems = ({ name, weather, imageUrl }) => {
   }).then(checkResponse);
 };
 
+const register = ({ name, avatar, email, password }) => {
+  return fetch(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, avatar, email, password }),
+  }).then(checkResponse);
+};
+
 const deleteItem = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
@@ -76,5 +84,6 @@ export const api = {
   deleteItem,
   addCardLike,
   removeCardLike,
-  updateUserProfile
+  updateUserProfile,
+  register,
 };
