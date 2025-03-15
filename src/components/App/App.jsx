@@ -204,21 +204,21 @@ function App() {
   const handleLoginSubmit = (userData) => {
     return api
       .login(userData)
-      .then((data) => {
-        console.log("Raw login response:", data); // Log the full response here
-  
-        // Ensure the response contains both token and user
-        if (data.token && data.user) {
-          localStorage.setItem("jwt", data.token);
-          setCurrentUser(data.user);
-          setIsLoggedIn(true);
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          return checkAuth(res.token); // verify and get user info!
         } else {
-          console.error("Login failed: Invalid response from server.");
+          throw new Error("Login failed: No token received");
         }
       })
-      .catch((error) => {
-        console.error("Login failed:", error);
-      });
+      .then((userData) => {
+        setCurrentUser(userData);
+        setIsLoggedIn(true);
+        handleCloseModal();
+      })
+      .catch((err) => console.error("Login Error:", err))
+      .finally(() => setIsLoading(false));
   };
 
   const handleCardLike = ({ id, isLiked }) => {
