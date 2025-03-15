@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useFormAndValidation from "../../utils/useFormAndValidation";
@@ -10,13 +10,21 @@ const RegisterModal = ({
   onLogin,
   isLoading,
 }) => {
-  // Just use the values from the custom hook (no need to re-declare `values` with useState)
   const { values, handleChange, isValid, resetForm } = useFormAndValidation();
+  const navigate = useNavigate(); // Call useNavigate for redirecting
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(values);
-    resetForm();
+    onSubmit(values) // Submit the values to the parent (e.g., API)
+      .then(() => {
+        handleCloseModal(); // Close the modal after successful registration and login
+        navigate("/profile"); // Redirect to profile page
+      })
+      .catch((error) => {
+        console.error("Registration error:", error);
+        // Optionally, handle error here (e.g., show a message)
+      });
+    resetForm(); // Reset form state after submission
   };
 
   return (

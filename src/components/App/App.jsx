@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import "./App.css";
 
@@ -152,7 +152,7 @@ function App() {
           setIsLoggedIn(false);
         });
     }
-  });
+  }, []);
 
   /**************************************************************************
    *                                  API                                   *
@@ -180,45 +180,45 @@ function App() {
 
   const handleRegisterSubmit = (userData) => {
     setIsLoading(true);
-    api
+
+    return api
       .register(userData)
-      .then((res) => {
-        if (res) {
-          return api.login({
-            email: userData.email,
-            password: userData.password,
-          });
-        }
-        throw new Error("Registration failed");
+      .then(() => {
+        return api.login({
+          email: userData.email,
+          password: userData.password,
+        });
       })
-      .then((user) => {
-        setCurrentUser(user);
-        setIsLoggedIn(true);
-        handleCloseModal();
+      .then((data) => {
+        localStorage.setItem("jwt", data.token);
+        setCurrentUser(data.user); // optional, if you want to store user data in state
+        setIsLoggedIn(true); // optional, depends on your app logic
+        setIsLoading(false);
       })
-      .catch((err) => console.error("Registration/Login Error:", err))
-      .finally(() => setIsLoading(false));
+      .catch((error) => {
+        console.error("Registration or login failed:", error);
+        setIsLoading(false);
+      });
   };
 
-  const handleLoginSubmit = ({ email, password }) => {
-    setIsLoading(true);
-    api
-      .signin({ email, password })
-      .then((res) => {
-        if (res.token) {
-          localStorage.setItem("jwt", res.token);
-          return checkAuth(res.token); // verify and get user info!
+  const handleLoginSubmit = (userData) => {
+    return api
+      .login(userData)
+      .then((data) => {
+        console.log("Raw login response:", data); // Log the full response here
+  
+        // Ensure the response contains both token and user
+        if (data.token && data.user) {
+          localStorage.setItem("jwt", data.token);
+          setCurrentUser(data.user);
+          setIsLoggedIn(true);
         } else {
-          throw new Error("Login failed: No token received");
+          console.error("Login failed: Invalid response from server.");
         }
       })
-      .then((userData) => {
-        setCurrentUser(userData);
-        setIsLoggedIn(true);
-        handleCloseModal();
-      })
-      .catch((err) => console.error("Login Error:", err))
-      .finally(() => setIsLoading(false));
+      .catch((error) => {
+        console.error("Login failed:", error);
+      });
   };
 
   const handleCardLike = ({ id, isLiked }) => {

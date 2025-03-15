@@ -1,14 +1,26 @@
+import { useNavigate } from "react-router-dom";
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useFormAndValidation from "../../utils/useFormAndValidation";
 
 const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
   const { values, handleChange, isValid, resetForm } = useFormAndValidation();
+  const navigate = useNavigate(); // Call useNavigate without arguments
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(values);
-    resetForm();
+    // Ensure onSubmit returns a Promise (e.g., after a successful API call)
+    onSubmit(values)
+      .then(() => {
+        handleCloseModal(); // Close the modal after successful submission
+        navigate("/profile"); // Redirect to the profile page after successful login/sign-up
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+        // Optionally, handle error here (e.g., show an error message)
+      });
+
+    resetForm(); // Reset the form state after submission (even if the submission is unsuccessful)
   };
 
   return (

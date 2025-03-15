@@ -10,14 +10,23 @@ function SideBar({ onEditProfile, setIsLoggedIn }) {
     setIsLoggedIn(false);
   };
 
+  // Get the user's initial or fallback to "U" for "User"
+  const getInitial = () => {
+    return currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : "U";
+  };
+
   return (
     <div className="sidebar">
       <section className="sidebar__profile">
-        <img
-          className="sidebar__avatar"
-          src={currentUser?.avatar || avatar} // fallback to default avatar
-          alt="User Avatar"
-        />
+        {currentUser?.avatar ? (
+          <img
+            className="sidebar__avatar"
+            src={currentUser.avatar}
+            alt="User Avatar"
+          />
+        ) : (
+          <div className="sidebar__avatar-placeholder">{getInitial()}</div>
+        )}
         <p className="sidebar__username">{currentUser?.name || "User"}</p>
       </section>
 

@@ -54,6 +54,26 @@
   line-height: 1.2;
 }
 
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc; /* placeholder color */
+  color: #fff; /* text color for the initial */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* circular placeholder */
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 .header__button {
   display: inline-block;
   text-align: center;
