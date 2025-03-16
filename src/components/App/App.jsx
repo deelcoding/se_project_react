@@ -96,6 +96,12 @@ function App() {
     setActiveModal("log-in");
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+  };
+
   /**************************************************************************
    *                               USE EFFECT                               *
    **************************************************************************/
@@ -162,7 +168,7 @@ function App() {
     api
       .addItems(item)
       .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+        setClothingItems([item.data, ...clothingItems]);
         handleCloseModal();
       })
       .catch((err) => console.log(err));
@@ -223,6 +229,8 @@ function App() {
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
+    console.log("button clicked");
+    console.log("isLiked", isLiked);
     // Check if this card is not currently liked
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
@@ -230,6 +238,7 @@ function App() {
           // the first argument is the card's id
           .addCardLike(id, token)
           .then((updatedCard) => {
+            console.log("updated card:", updatedCard);
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
@@ -266,6 +275,7 @@ function App() {
   };
 
   return (
+    // <CurrentUserContext.Provider value={{ user: currentUser }}>
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
@@ -301,6 +311,7 @@ function App() {
                         onEditProfile={onEditProfile}
                         onCardLike={handleCardLike}
                         setIsLoggedIn={setIsLoggedIn}
+                        handleLogout={handleLogout}
                       />
                     }
                   />

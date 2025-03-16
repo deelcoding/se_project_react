@@ -4,7 +4,7 @@ import "./ClothesSection.css";
 // import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ onAddGarment, onCardClick, clothingItems }) {
+function ClothesSection({ onAddGarment, onCardClick, clothingItems, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
   const userClothingItems = currentUser
@@ -29,6 +29,7 @@ function ClothesSection({ onAddGarment, onCardClick, clothingItems }) {
               key={item._id}
               item={item}
               onCardClick={onCardClick}
+              onCardLike={onCardLike}
             />
           );
         })}

@@ -9,6 +9,8 @@ function Profile({
   onAddGarment,
   onEditProfile,
   setIsLoggedIn,
+  handleLogout,
+  onCardLike
 }) {
   return (
     <div className="profile">
@@ -16,6 +18,7 @@ function Profile({
         <SideBar
           onEditProfile={onEditProfile}
           setIsLoggedIn={setIsLoggedIn}
+          handleLogout={handleLogout}
         />
       </section>
       <section className="profile__clothing-items">
@@ -23,6 +26,7 @@ function Profile({
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           onAddGarment={onAddGarment}
+          onCardLike={onCardLike}
         />
       </section>
     </div>

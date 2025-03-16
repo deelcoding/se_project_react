@@ -4,20 +4,23 @@ import "./ItemCard.css";
 
 function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
-
+  
   const handleCardClick = () => {
     onCardClick(item);
   };
-
-  // Safe check for likes array before using `.some()`
+  
   const isLiked =
-    Array.isArray(item.likes) &&
-    item.likes.some((id) => id === currentUser?._id);
+  Array.isArray(item.likes) &&
+  item.likes.some((id) => id.toString() === currentUser?._id);
 
+  
   const itemLikeButtonClassName = `card__like-button ${
     isLiked ? "card__like-button_active" : ""
   }`;
-
+  
+  console.log("rendering itemcard for", item.name);
+  console.log("item likes:", item.likes);
+  console.log("is liked", isLiked);
   const handleLike = () => {
     onCardLike({
       id: item._id,

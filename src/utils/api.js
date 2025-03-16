@@ -27,6 +27,7 @@ const addItems = ({ name, weather, imageUrl }) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -58,9 +59,11 @@ const login = ({ email, password }) => {
 };
 
 const deleteItem = (id) => {
+  const token = localStorage.getItem("jwt"); // Get it at call time!
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
   }).then(checkResponse);

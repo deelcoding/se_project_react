@@ -43,6 +43,7 @@
   cursor: pointer;
   border: none;
   color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
 }
 
 .card__like-button_active {

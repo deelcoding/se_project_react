@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SideBar.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function SideBar({ onEditProfile, setIsLoggedIn }) {
+function SideBar({ onEditProfile, setIsLoggedIn, handleLogout }) {
   const currentUser = useContext(CurrentUserContext);
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("jwt");
-    setIsLoggedIn(false);
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("jwt");
+  //   setIsLoggedIn(false);
+  //   navigate("/"); // redirect after logout (you can choose another route)
+  // };
 
   // Get the user's initial or fallback to "U" for "User"
   const getInitial = () => {
