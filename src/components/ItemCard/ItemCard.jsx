@@ -18,9 +18,6 @@ function ItemCard({ item, onCardClick, onCardLike }) {
     isLiked ? "card__like-button_active" : ""
   }`;
   
-  console.log("rendering itemcard for", item.name);
-  console.log("item likes:", item.likes);
-  console.log("is liked", isLiked);
   const handleLike = () => {
     onCardLike({
       id: item._id,
