@@ -10,8 +10,9 @@ function Profile({
   onEditProfile,
   setIsLoggedIn,
   handleLogout,
-  onCardLike
+  onCardLike,
 }) {
+  console.log(clothingItems);
   return (
     <div className="profile">
       <section className="profile__sidebar">

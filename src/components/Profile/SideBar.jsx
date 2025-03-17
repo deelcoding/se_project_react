@@ -5,7 +5,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function SideBar({ onEditProfile, setIsLoggedIn, handleLogout }) {
   const currentUser = useContext(CurrentUserContext);
-  const navigate = useNavigate();
+  // const { user } = useContext(CurrentUserContext) || {};
 
   // const handleLogout = () => {
   //   localStorage.removeItem("jwt");

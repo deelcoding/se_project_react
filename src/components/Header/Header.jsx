@@ -14,20 +14,24 @@ function Header({ onSignUp, onLogIn, onAddGarment, weatherData }) {
 
   const [value, setValue] = useState(false);
   const { user } = useContext(CurrentUserContext) || {};
+  const currentUser = useContext(CurrentUserContext);
 
   const renderAvatar = () => {
-    if (user.avatar) {
+    if (currentUser.avatar) {
       return (
         <img
-          src={user.avatar}
+          src={currentUser.avatar}
           alt="Avatar"
           className="header__avatar"
         />
       );
     }
+    console.log(currentUser.avatar);
     const initial = user.name ? user.name.charAt(0).toUpperCase() : "?";
     return <div className="header__avatar-placeholder">{initial}</div>;
   };
+
+  // console.log({ user });
 
   return (
     <header className="header">
@@ -51,7 +55,7 @@ function Header({ onSignUp, onLogIn, onAddGarment, weatherData }) {
             isOn={value}
             handleToggle={() => setValue(!value)}
           />
-          {user ? (
+          {currentUser ? (
             <>
               <button
                 onClick={onAddGarment}
@@ -63,7 +67,7 @@ function Header({ onSignUp, onLogIn, onAddGarment, weatherData }) {
                 to="/profile"
                 className="header__link">
                 <div className="header__profile">
-                  <p className="header__username">{user.name}</p>
+                  <p className="header__username">{currentUser.name}</p>
                   {renderAvatar()}
                 </div>
               </Link>

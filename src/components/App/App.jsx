@@ -229,8 +229,6 @@ function App() {
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
-    console.log("button clicked");
-    console.log("isLiked", isLiked);
     // Check if this card is not currently liked
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
@@ -238,7 +236,6 @@ function App() {
           // the first argument is the card's id
           .addCardLike(id, token)
           .then((updatedCard) => {
-            console.log("updated card:", updatedCard);
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
@@ -263,8 +260,13 @@ function App() {
     api
       .updateUserProfile({ name, avatar }, token)
       .then((updatedUser) => {
-        setCurrentUser(updatedUser); // update the context with new user data
+        setCurrentUser(updatedUser); // update user context
+        // api.getItems(); // refetch items
         handleCloseModal(); // close modal after success
+      })
+      .then((items) => {
+        setClothingItems(items); // update clothing items
+        console.log(items);
       })
       .catch((err) => {
         console.error("Profile update error:", err);
@@ -273,6 +275,22 @@ function App() {
         setIsLoading(false);
       });
   };
+
+  // const fetchClothingItems = () => {
+  //   api
+  //     .getItems()
+  //     .then((data) => {
+  //       console.log(data);
+  //       setClothingItems(data);
+  //     })
+  //     .catch((err) => {
+  //       console.error("Error fetching items:", err);
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   fetchClothingItems();
+  // }, []);
 
   return (
     // <CurrentUserContext.Provider value={{ user: currentUser }}>
