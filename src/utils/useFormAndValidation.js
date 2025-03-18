@@ -1,17 +1,21 @@
 import { useState } from "react";
 
 const useFormAndValidation = () => {
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    name: "",
+    avatar: "",
+  });
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setValues({ ...values, [name]: value });
 
-    const isFieldValid = event.target.validity.valid;
-    setErrors({ ...errors, [name]: event.target.validationMessage });
-    setIsValid(event.target.closest("form").checkValidity() && isFieldValid);
+    setValues((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: event.target.validationMessage }));
+    setIsValid(event.target.closest("form").checkValidity());
   };
 
   const resetForm = (newValues = {}, newErrors = {}, newIsValid = false) => {

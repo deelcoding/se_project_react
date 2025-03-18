@@ -18,13 +18,13 @@ const RegisterModal = ({
     onSubmit(values) // Submit the values to the parent (e.g., API)
       .then(() => {
         handleCloseModal(); // Close the modal after successful registration and login
+        resetForm(); // Reset form state after submission
         navigate("/profile"); // Redirect to profile page
       })
       .catch((error) => {
         console.error("Registration error:", error);
         // Optionally, handle error here (e.g., show a message)
       });
-    resetForm(); // Reset form state after submission
   };
 
   return (

@@ -1,4 +1,5 @@
 const API_URL = "http://localhost:3001";
+import { checkResponse } from "./api";
 
 export const signup = function ({ name, avatar, email, password }) {
   return fetch(`${API_URL}/signup`, {
@@ -7,7 +8,7 @@ export const signup = function ({ name, avatar, email, password }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((response) => response.json());
+  }).then(checkResponse);
 };
 
 export const signin = function ({ email, password }) {
@@ -17,7 +18,7 @@ export const signin = function ({ email, password }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((response) => response.json());
+  }).then(checkResponse);
 };
 
 export const checkAuth = (token) => {
@@ -28,12 +29,7 @@ export const checkAuth = (token) => {
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Invalid token or session expired.");
-      }
-      return response.json();
-    })
+    .then(checkResponse)
     .catch((error) => {
       console.error("Authentication error:", error.message);
       return null;

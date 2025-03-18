@@ -199,10 +199,11 @@ function App() {
         localStorage.setItem("jwt", data.token);
         setCurrentUser(data.user); // optional, if you want to store user data in state
         setIsLoggedIn(true); // optional, depends on your app logic
-        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Registration or login failed:", error);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   };
@@ -260,13 +261,11 @@ function App() {
     api
       .updateUserProfile({ name, avatar }, token)
       .then((updatedUser) => {
-        setCurrentUser(updatedUser); // update user context
-        return api.getItems();
-      })
-      .then((items) => {
-        handleCloseModal(); // close modal after success
-        setClothingItems(items); // update clothing items
-        console.log(items);
+        setCurrentUser({
+          ...currentUser, // spread the old profile data (with your `_id`) into a new object
+          ...updatedUser, // spread the new updated data
+        });
+        handleCloseModal();
       })
       .catch((err) => {
         console.error("Profile update error:", err);

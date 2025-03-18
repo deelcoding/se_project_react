@@ -13,14 +13,13 @@ const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
     onSubmit(values)
       .then(() => {
         handleCloseModal(); // Close the modal after successful submission
+        resetForm(); // Reset the form state after submission (even if the submission is unsuccessful)
         navigate("/profile"); // Redirect to the profile page after successful login/sign-up
       })
       .catch((error) => {
         console.error("Login error:", error);
         // Optionally, handle error here (e.g., show an error message)
       });
-
-    resetForm(); // Reset the form state after submission (even if the submission is unsuccessful)
   };
 
   return (
@@ -41,7 +40,7 @@ const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
           id="email"
           placeholder="Email"
           name="email"
-          value={values.email}
+          value={values.email || ""}
           onChange={handleChange}
           required
         />
@@ -56,7 +55,7 @@ const LoginModal = ({ handleCloseModal, onSubmit, isOpen, onSignUp }) => {
           id="password"
           name="password"
           placeholder="Password"
-          value={values.password}
+          value={values.password || ""}
           onChange={handleChange}
           required
         />
