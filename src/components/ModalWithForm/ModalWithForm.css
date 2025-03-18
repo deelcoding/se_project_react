@@ -110,6 +110,22 @@
   padding: 0;
 }
 
+.modal__label_selected {
+  color: #000; /* turns the label text black */
+}
+
+.modal__label_selected .modal__radio-input {
+  accent-color: #000; /* changes the radio button color to black in most modern browsers */
+}
+
+.modal__label_unselected {
+  color: rgba(0, 0, 0, 0.5); /* gray text */
+}
+
+.modal__label_unselected .modal__radio-input {
+  accent-color: rgba(0, 0, 0, 0.5); /* gray radio button */
+}
+
 .modal__submit {
   margin-top: 32px;
   width: 128px;

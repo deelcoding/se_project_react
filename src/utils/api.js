@@ -18,6 +18,7 @@ export function checkResponse(res) {
 const getItems = () => {
   return fetch(`${baseUrl}/items`, {
     headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       "Content-Type": "application/json",
     },
   }).then(checkResponse);
@@ -27,7 +28,7 @@ const addItems = ({ name, weather, imageUrl }) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -42,7 +43,6 @@ const register = ({ name, avatar, email, password }) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
@@ -53,7 +53,10 @@ const login = ({ email, password }) => {
   return fetch(`${baseUrl}/signin`, {
     // Ensure the endpoint is correct (should be /signin in your case)
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ email, password }),
   }).then(checkResponse);
 };
@@ -63,7 +66,7 @@ const deleteItem = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       "Content-Type": "application/json",
     },
   }).then(checkResponse);
@@ -74,7 +77,7 @@ const addCardLike = (id, token) => {
     method: "PUT", // RESTful convention to add a like
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // include token in header for auth
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   }).then(checkResponse);
 };
@@ -84,7 +87,7 @@ const removeCardLike = (id, token) => {
     method: "DELETE", // RESTful convention to remove a like
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   }).then(checkResponse);
 };
@@ -94,7 +97,7 @@ const updateUserProfile = ({ name, avatar }, token) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // assuming JWT auth
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify({ name, avatar }),
   }).then(checkResponse);

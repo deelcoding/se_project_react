@@ -60,7 +60,9 @@ const AddItemModal = ({ handleCloseModal, onSubmit, isOpen }) => {
         <legend className="modal__legend">Select the weather type:</legend>
         <label
           htmlFor="hot"
-          className="modal__label modal__label_type_radio">
+          className={`modal__label modal__label_type_radio ${
+            weather === "hot" ? "modal__label_selected" : "modal__label_unselected"
+          }`}>
           <input
             id="hot"
             type="radio"
@@ -73,7 +75,9 @@ const AddItemModal = ({ handleCloseModal, onSubmit, isOpen }) => {
         </label>
         <label
           htmlFor="warm"
-          className="modal__label modal__label_type_radio">
+          className={`modal__label modal__label_type_radio ${
+            weather === "warm" ? "modal__label_selected" : "modal__label_unselected"
+          }`}>
           <input
             id="warm"
             type="radio"
@@ -86,7 +90,9 @@ const AddItemModal = ({ handleCloseModal, onSubmit, isOpen }) => {
         </label>
         <label
           htmlFor="cold"
-          className="modal__label modal__label_type_radio">
+          className={`modal__label modal__label_type_radio ${
+            weather === "cold" ? "modal__label_selected" : "modal__label_unselected"
+          }`}>
           <input
             id="cold"
             type="radio"

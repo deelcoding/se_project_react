@@ -12,7 +12,7 @@ function Profile({
   handleLogout,
   onCardLike,
 }) {
-  console.log(clothingItems);
+  // console.log(clothingItems);
   return (
     <div className="profile">
       <section className="profile__sidebar">

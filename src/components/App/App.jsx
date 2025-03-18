@@ -261,10 +261,10 @@ function App() {
       .updateUserProfile({ name, avatar }, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser); // update user context
-        // api.getItems(); // refetch items
-        handleCloseModal(); // close modal after success
+        return api.getItems();
       })
       .then((items) => {
+        handleCloseModal(); // close modal after success
         setClothingItems(items); // update clothing items
         console.log(items);
       })
@@ -275,22 +275,6 @@ function App() {
         setIsLoading(false);
       });
   };
-
-  // const fetchClothingItems = () => {
-  //   api
-  //     .getItems()
-  //     .then((data) => {
-  //       console.log(data);
-  //       setClothingItems(data);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error fetching items:", err);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   fetchClothingItems();
-  // }, []);
 
   return (
     // <CurrentUserContext.Provider value={{ user: currentUser }}>

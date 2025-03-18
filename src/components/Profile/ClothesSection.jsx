@@ -13,9 +13,10 @@ function ClothesSection({
   // console.log(clothingItems);
   const currentUser = useContext(CurrentUserContext);
 
-  const userClothingItems = currentUser
-    ? clothingItems.filter((item) => item.owner === currentUser._id)
-    : [];
+  const userClothingItems =
+    currentUser && clothingItems
+      ? clothingItems.filter((item) => item.owner == currentUser._id)
+      : [];
 
   return (
     <div className="clothes-section">
