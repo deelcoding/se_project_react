@@ -57,7 +57,7 @@ const login = ({ email, password }) => {
     // Ensure the endpoint is correct (should be /signin in your case)
     method: "POST",
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      // Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
