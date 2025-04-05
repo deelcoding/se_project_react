@@ -1,4 +1,7 @@
-const API_URL = "http://localhost:3001";
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwrdeelcoding.crabdance.com"
+    : "http://localhost:3001";
 import { checkResponse } from "./api";
 
 export const signup = function ({ name, avatar, email, password }) {
